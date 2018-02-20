@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+    web:
+        #Use following image to download from Docker Hub
+        #image: robertfreeman/webtester
+        image: robertfreeman/reditest
+        ports:
+            - 8082:8082
+        networks:
+            - backend
+
+    hasher:
+        image: robertfreeman/robhasher
+        networks:
+            - backend
+
+    redis:
+        image: robertfreeman/redis-cont
+        networks:
+            - backend
+
+networks:
+    backend:

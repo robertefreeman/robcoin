@@ -1,0 +1,8 @@
+FROM golang:latest
+RUN go get github.com/garyburd/redigo/redis
+RUN mkdir /app
+ADD . /app/
+WORKDIR /app
+
+RUN go build robhasher.go
+CMD ["/app/robhasher"]
