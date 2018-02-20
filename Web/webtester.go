@@ -29,7 +29,7 @@ func newPool() *redis.Pool {
 		MaxIdle:   80,
 		MaxActive: 12000,
 		Dial: func() (redis.Conn, error) {
-			return redis.Dial("tcp", "redis2:8087")
+			return redis.Dial("tcp", "redis:6379")
 		},
 	}
 }

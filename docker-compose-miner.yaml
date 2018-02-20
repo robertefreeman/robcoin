@@ -3,7 +3,7 @@ services:
     web:
         #Use following image to download from Docker Hub
         #image: robertfreeman/webtester
-        image: robertfreeman/reditest
+        image: robertfreeman/coin_web
         ports:
             - 8082:8082
         networks:
