@@ -1,16 +1,24 @@
 version: '3.3'
 services:
     web:
-        #Use following image to download from Docker Hub
-        #image: robertfreeman/webtester
+        image: robertfreeman/coin_web
+        deploy:
+            mode: replicated
+            replicas: 2
+            labels:
+                com.docker.ucp.mesh.http.8082: "external_route=http://robcoin.ucp.robert.dtcntr.net,internal_port=8082"
         image: robertfreeman/coin_web
         ports:
-            - 8082:8082
+            - 8082
         networks:
             - backend
+            - ucp-hrm
 
     hasher:
         image: robertfreeman/robhasher
+        deploy:
+            mode: replicated
+            replicas: 2
         networks:
             - backend
 
@@ -21,3 +29,5 @@ services:
 
 networks:
     backend:
+    ucp-hrm:
+        external: true
