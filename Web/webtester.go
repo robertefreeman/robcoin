@@ -43,7 +43,7 @@ func serveTemplate(w http.ResponseWriter, r *http.Request) {
 	tmpl, _ = tmpl.ParseFiles("index.html")
 
 	bench := benchmark()
-	bodString := fmt.Sprintf(" %v RobCoins have been mined", bench)
+	bodString := fmt.Sprintf(" %v RobCoins have been mined ", bench)
 	p := Page{Body: bodString, Title: `RobCoin Miner`, Name: "Robert"}
 
 	if err := tmpl.Execute(w, p); err != nil {
@@ -64,6 +64,7 @@ func benchmark() string {
 	hname, _ := os.Hostname()
 	mu.Unlock()
 	bench := hname + " " + ops_persec
+	hname == ""
 	return bench
 }
 

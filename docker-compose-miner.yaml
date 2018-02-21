@@ -5,9 +5,6 @@ services:
         deploy:
             mode: replicated
             replicas: 2
-            labels:
-                com.docker.ucp.mesh.http.8082: "external_route=http://robcoin.ucp.robert.dtcntr.net,internal_port=8082"
-        image: robertfreeman/coin_web
         ports:
             - 8082
         networks:
@@ -29,5 +26,3 @@ services:
 
 networks:
     backend:
-    ucp-hrm:
-        external: true
