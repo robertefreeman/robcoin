@@ -1,15 +1,18 @@
 version: '3.3'
 services:
     web:
-        image: robertfreeman/coin_web
-        deploy:
-            mode: replicated
-            replicas: 2
+        image: robertfreeman/webtester
         ports:
-            - 8082
+            - 80
         networks:
             - backend
-            - ucp-hrm
+
+    api:
+        image: robertfreeman/tempapi
+        ports:
+            - 8082:8082
+        networks:
+            - backend
 
     hasher:
         image: robertfreeman/robhasher

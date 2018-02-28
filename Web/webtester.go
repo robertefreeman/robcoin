@@ -64,7 +64,6 @@ func benchmark() string {
 	hname, _ := os.Hostname()
 	mu.Unlock()
 	bench := hname + " " + ops_persec
-	hname == ""
 	return bench
 }
 
