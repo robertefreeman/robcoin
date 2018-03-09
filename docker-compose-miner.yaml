@@ -1,7 +1,7 @@
 version: '3.3'
 services:
     web:
-        image: robertfreeman/webtester
+        image: robertfreeman/robcoin_gui
         ports:
             - 80
         networks:

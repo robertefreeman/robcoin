@@ -25,7 +25,7 @@ func newPool() *redis.Pool {
 	}
 }
 
-func loopcounter() int {
+func coinhash() int {
 	conn := pool.Get()
 	defer conn.Close()
 	s1 := rand.NewSource(time.Now().UnixNano())
@@ -36,13 +36,28 @@ func loopcounter() int {
 			mu.Lock()
 			conn.Do("INCR", "viewCount")
 			mu.Unlock()
+			coinfind()
 		}
 		time.Sleep(1 * time.Millisecond)
 	}
 	return 1
 }
 
+func coinfind() {
+	conn := pool.Get()
+	defer conn.Close()
+	s1 := rand.NewSource(time.Now().UnixNano())
+	r1 := rand.New(s1)
+	hash_rand := r1.Intn(100)
+	if hash_rand == 31 {
+		mu.Lock()
+		conn.Do("INCR", "coins")
+		mu.Unlock()
+	}
+	fmt.Println("coin found!")
+}
+
 func main() {
-	count := loopcounter()
+	count := coinhash()
 	fmt.Println(count)
 }
