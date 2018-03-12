@@ -13,18 +13,19 @@ import (
 )
 
 type Hashes struct {
-	hash1 int `json:"hashes"`
+	Hashes int `json:"hashes"`
 }
 
 type CoinCount struct {
-	coins1 int `json:"coins"`
+	Coins int `json:"coins"`
 }
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/hashes", hashesPS)
 	router.HandleFunc("/coins", coinReturn)
-	log.Fatal(http.ListenAndServe(":8082", router))
+
+	log.Fatal(http.ListenAndServe(":8082", corsMiddleware(router)))
 }
 
 var mu sync.Mutex
@@ -33,6 +34,23 @@ var mu sync.Mutex
 var pool = newPool()
 
 // Pool configuration
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Executing middleware", r.Method)
+
+		if r.Method == "OPTIONS" {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+			w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS")
+			w.Header().Set("Access-Control-Allow-Headers:", "Origin, Content-Type, X-Auth-Token, Authorization, Access-Control-Allow-Origin")
+			w.Header().Set("Content-Type", "application/json")
+			return
+		}
+
+		next.ServeHTTP(w, r)
+		log.Println("Executing middleware again")
+	})
+}
+
 func newPool() *redis.Pool {
 	return &redis.Pool{
 		MaxIdle:   80,
@@ -82,7 +100,7 @@ func hashesPS(w http.ResponseWriter, r *http.Request) {
 func totCoins() int {
 	conn := pool.Get()
 	defer conn.Close()
-	count, _ := redis.Int(conn.Do("GET", "viewCount"))
+	count, _ := redis.Int(conn.Do("GET", "coins"))
 	return count
 }
 

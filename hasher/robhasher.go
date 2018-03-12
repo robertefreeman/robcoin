@@ -49,12 +49,13 @@ func coinfind() {
 	s1 := rand.NewSource(time.Now().UnixNano())
 	r1 := rand.New(s1)
 	hash_rand := r1.Intn(100)
-	if hash_rand == 31 {
+	if hash_rand == 3 {
 		mu.Lock()
 		conn.Do("INCR", "coins")
 		mu.Unlock()
+		count, _ := redis.Int(conn.Do("GET", "coins"))
+		fmt.Println(count)
 	}
-	fmt.Println("coin found!")
 }
 
 func main() {

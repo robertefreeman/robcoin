@@ -2,6 +2,9 @@ version: '3.3'
 services:
     web:
         image: robertfreeman/robcoin_gui
+        deploy:
+            mode: replicated
+            replicas: 2
         ports:
             - 80
         networks:
