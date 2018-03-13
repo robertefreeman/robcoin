@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <title>RobCoin: The Greatest Cryptocurrency</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+
+  <!-- Bootstrap 3 CDNs -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- ZingChart CDNs -->
+  <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <script>
+    zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+    ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9", "ee6b7db5b51705a13dc2339db3edaf6d"];
+  </script>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h1>RobCoin Miner Dashboard</h1>
+    <p>Your probably going to be rich!.</p>
+    <div class="stats">
+      <p>Processed by container ID</p>
+      <p><b>{{hostname}}</b></p>
+      <p>version {{version}}</p>
+    </div>
+    <div class="jumbotron">
+      <div class="row no-gutter">
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div id='myChartCoin'><a class="zc-ref" href="https://www.zingchart.com/"></a></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div id='myChartHashes'><a class="zc-ref" href="https://www.zingchart.com/"></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hashes per second chart -->
+</body>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</html>
