@@ -13,7 +13,7 @@ CORS(app)
 
 @app.route('/')
 def index():
-    url = "robcoins.com"
+    url = "coin.robert.dtcntr.net"
 
     return render_template('index.html', hostname=hostname, version=version)
 
