@@ -15,7 +15,7 @@ services:
         deploy:
            labels:
              com.docker.lb.hosts: api.coin.robert.dtcntr.net
-             com.docker.lb.port: 8080
+             com.docker.lb.port: 8082
         networks:
             - coin_ingress
 
