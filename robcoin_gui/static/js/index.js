@@ -10,7 +10,7 @@ window.feed = function(callback) {
       "Access-Control-Allow-Origin": "*"
 
     },
-    url: "http://ucp.robert.dtcntr.net:8082/hashes",
+    url: "http://beta.robert.dtcntr.net:8082/hashes",
     success: function(data) {
       var mem = data.hashes;
       var tick = {
@@ -32,7 +32,7 @@ window.feed2 = function(callback) {
       "Access-Control-Allow-Origin": "*"
 
     },
-    url: "http://ucp.robert.dtcntr.net:8082/coins",
+    url: "http://beta.robert.dtcntr.net:8082/coins",
     success: function(data) {
       var mem = data.coins;
       var tick = {
