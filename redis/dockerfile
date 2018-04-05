@@ -2,6 +2,8 @@ FROM redis:alpine
 
 COPY redis.conf /usr/local/etc/redis/redis.conf
 
+RUN rm -f /usr/lib/libdb-5.3.so 
+
 EXPOSE 6379
 
 CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
