@@ -1,7 +1,7 @@
 version: '3.3'
 services:
     web:
-        image: dtr.r0b.cc/engineering//robcoin_gui:1.0
+        image: dtr.r0b.cc/engineering/robcoin_gui:1.0
         deploy:
             mode: replicated
             replicas: 2
@@ -20,7 +20,7 @@ services:
             - coin_ingress
 
     hasher:
-        image: dtr.r0b.cc/engineering/hasher
+        image: dtr.r0b.cc/engineering/hasher:1.0
         deploy:
             mode: replicated
             replicas: 2
@@ -38,4 +38,4 @@ networks:
        ipam:
            driver: default
            config:
-              - subnet: 172.28.0.0/16
+              - subnet: 192.168.20.0/16
