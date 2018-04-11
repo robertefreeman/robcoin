@@ -1,26 +1,26 @@
 version: '3.3'
 services:
     web:
-        image: robertfreeman/robcoin_gui
+        image: dtr.r0b.cc/engineering//robcoin_gui:1.0
         deploy:
             mode: replicated
             replicas: 2
             labels:
-              com.docker.lb.hosts: coin.robert.dtcntr.net
+              com.docker.lb.hosts: coin.r0b.cc
               com.docker.lb.port: 80
         networks:
             - coin_ingress
     api:
-        image: robertfreeman/tempapi
+        image: dtr.r0b.cc/engineering/tempapi:1.0
         deploy:
            labels:
-             com.docker.lb.hosts: api.coin.robert.dtcntr.net
+             com.docker.lb.hosts: api.coin.r0b.cc
              com.docker.lb.port: 8082
         networks:
             - coin_ingress
 
     hasher:
-        image: robertfreeman/robhasher
+        image: dtr.r0b.cc/engineering/hasher
         deploy:
             mode: replicated
             replicas: 2
@@ -28,7 +28,7 @@ services:
             - coin_ingress
 
     redis:
-        image: robertfreeman/redis-cont
+        image: dtr.r0b.cc/engineering/redis-cont:1.0
         networks:
             - coin_ingress
 
